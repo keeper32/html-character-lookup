@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CharCoder</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
+.button {
+  position: relative;
+  background-color: #04AA6D;
+  border: none;
+  font-size: 28px;
+  color: #FFFFFF;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button:after {
+  content: "";
+  background: #90EE90;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Character Code lookup</h2>
+
+<input type="text" id="myInput" maxlength="1" onkeyup="filter2()" placeholder="Type a char" title="Type in a name">
+
+<table id="tblChar" class="table">
+
+
+<script>
+function filter2() {
+    var input, filter, tbl, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    tbl = document.getElementById("tblChar");
+    tr = tbl.getElementsByTagName("tr"); 
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+    }
+}
+
+function copy(item){
+	var previousInput = item.parentElement.previousSibling.firstChild;
+	console.log(previousInput.value);
+	previousInput.select();
+	document.execCommand("copy");
+	item.innerText="copied!";
+}
+</script>
+
+<tr><td>0x0022</td><td>"</td><td><span class="uniname">QUOTATION MARK</span></td><td><code>&amp;quot;</code></td><td><input value="&amp;#34;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0026</td><td>&amp;</td><td><span class="uniname">AMPERSAND</span></td><td><code>&amp;amp;</code></td><td><input value="&amp;#38;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0027</td><td>'</td><td><span class="uniname">APOSTROPHE</span></td><td><code>&amp;apos;</code></td><td><input value="&amp;#39;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x003c</td><td>&lt;</td><td><span class="uniname">LESS-THAN SIGN</span></td><td><code>&amp;lt;</code></td><td><input value="&amp;#60;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x003e</td><td>&gt;</td><td><span class="uniname">GREATER-THAN SIGN</span></td><td><code>&amp;gt;</code></td><td><input value="&amp;#62;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a0</td><td><span class="ctlcode">nbsp</span></td><td><span class="uniname">NO-BREAK SPACE</span></td><td><code>&amp;nbsp;</code></td><td><input value="&amp;#160;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a1</td><td>¡</td><td><span class="uniname">INVERTED EXCLAMATION MARK</span></td><td><code>&amp;iexcl;</code></td><td><input value="&amp;#161;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a2</td><td>¢</td><td><span class="uniname">CENT SIGN</span></td><td><code>&amp;cent;</code></td><td><input value="&amp;#162;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a3</td><td>£</td><td><span class="uniname">POUND SIGN</span></td><td><code>&amp;pound;</code></td><td><input value="&amp;#163;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a4</td><td>¤</td><td><span class="uniname">CURRENCY SIGN</span></td><td><code>&amp;curren;</code></td><td><input value="&amp;#164;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a5</td><td>¥</td><td><span class="uniname">YEN SIGN</span></td><td><code>&amp;yen;</code></td><td><input value="&amp;#165;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a6</td><td>¦</td><td><span class="uniname">BROKEN BAR</span></td><td><code>&amp;brvbar;</code></td><td><input value="&amp;#166;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a7</td><td>§</td><td><span class="uniname">SECTION SIGN</span></td><td><code>&amp;sect;</code></td><td><input value="&amp;#167;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a8</td><td>¨</td><td><span class="uniname">DIAERESIS</span></td><td><code>&amp;uml;</code></td><td><input value="&amp;#168;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00a9</td><td>©</td><td><span class="uniname">COPYRIGHT SIGN</span></td><td><code>&amp;copy;</code></td><td><input value="&amp;#169;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00aa</td><td>ª</td><td><span class="uniname">FEMININE ORDINAL INDICATOR</span></td><td><code>&amp;ordf;</code></td><td><input value="&amp;#170;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ab</td><td>«</td><td><span class="uniname">LEFT-POINTING DOUBLE ANGLE QUOTATION MARK</span></td><td><code>&amp;laquo;</code></td><td><input value="&amp;#171;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ac</td><td>¬</td><td><span class="uniname">NOT SIGN</span></td><td><code>&amp;not;</code></td><td><input value="&amp;#172;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ad</td><td><span class="ctlcode">shy</span></td><td><span class="uniname">SOFT HYPHEN</span></td><td><code>&amp;shy;</code></td><td><input value="&amp;#173;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ae</td><td>®</td><td><span class="uniname">REGISTERED SIGN</span></td><td><code>&amp;reg;</code></td><td><input value="&amp;#174;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00af</td><td>¯</td><td><span class="uniname">MACRON</span></td><td><code>&amp;macr;</code></td><td><input value="&amp;#175;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b0</td><td>°</td><td><span class="uniname">DEGREE SIGN</span></td><td><code>&amp;deg;</code></td><td><input value="&amp;#176;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b1</td><td>±</td><td><span class="uniname">PLUS-MINUS SIGN</span></td><td><code>&amp;plusmn;</code></td><td><input value="&amp;#177;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b2</td><td>²</td><td><span class="uniname">SUPERSCRIPT TWO</span></td><td><code>&amp;sup2;</code></td><td><input value="&amp;#178;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b3</td><td>³</td><td><span class="uniname">SUPERSCRIPT THREE</span></td><td><code>&amp;sup3;</code></td><td><input value="&amp;#179;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b4</td><td>´</td><td><span class="uniname">ACUTE ACCENT</span></td><td><code>&amp;acute;</code></td><td><input value="&amp;#180;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b5</td><td>µ</td><td><span class="uniname">MICRO SIGN</span></td><td><code>&amp;micro;</code></td><td><input value="&amp;#181;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b6</td><td>¶</td><td><span class="uniname">PILCROW SIGN</span></td><td><code>&amp;para;</code></td><td><input value="&amp;#182;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b7</td><td>·</td><td><span class="uniname">MIDDLE DOT</span></td><td><code>&amp;middot;</code></td><td><input value="&amp;#183;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b8</td><td>¸</td><td><span class="uniname">CEDILLA</span></td><td><code>&amp;cedil;</code></td><td><input value="&amp;#184;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00b9</td><td>¹</td><td><span class="uniname">SUPERSCRIPT ONE</span></td><td><code>&amp;sup1;</code></td><td><input value="&amp;#185;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ba</td><td>º</td><td><span class="uniname">MASCULINE ORDINAL INDICATOR</span></td><td><code>&amp;ordm;</code></td><td><input value="&amp;#186;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00bb</td><td>»</td><td><span class="uniname">RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK</span></td><td><code>&amp;raquo;</code></td><td><input value="&amp;#187;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00bc</td><td>¼</td><td><span class="uniname">VULGAR FRACTION ONE QUARTER</span></td><td><code>&amp;frac14;</code></td><td><input value="&amp;#188;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00bd</td><td>½</td><td><span class="uniname">VULGAR FRACTION ONE HALF</span></td><td><code>&amp;frac12;</code></td><td><input value="&amp;#189;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00be</td><td>¾</td><td><span class="uniname">VULGAR FRACTION THREE QUARTERS</span></td><td><code>&amp;frac34;</code></td><td><input value="&amp;#190;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00bf</td><td>¿</td><td><span class="uniname">INVERTED QUESTION MARK</span></td><td><code>&amp;iquest;</code></td><td><input value="&amp;#191;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c0</td><td>À</td><td><span class="uniname">LATIN CAPITAL LETTER A WITH GRAVE</span></td><td><code>&amp;Agrave;</code></td><td><input value="&amp;#192;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c1</td><td>Á</td><td><span class="uniname">LATIN CAPITAL LETTER A WITH ACUTE</span></td><td><code>&amp;Aacute;</code></td><td><input value="&amp;#193;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c2</td><td>Â</td><td><span class="uniname">LATIN CAPITAL LETTER A WITH CIRCUMFLEX</span></td><td><code>&amp;Acirc;</code></td><td><input value="&amp;#194;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c3</td><td>Ã</td><td><span class="uniname">LATIN CAPITAL LETTER A WITH TILDE</span></td><td><code>&amp;Atilde;</code></td><td><input value="&amp;#195;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c4</td><td>Ä</td><td><span class="uniname">LATIN CAPITAL LETTER A WITH DIAERESIS</span></td><td><code>&amp;Auml;</code></td><td><input value="&amp;#196;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c5</td><td>Å</td><td><span class="uniname">LATIN CAPITAL LETTER A WITH RING ABOVE</span></td><td><code>&amp;Aring;</code></td><td><input value="&amp;#197;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c6</td><td>Æ</td><td><span class="uniname">LATIN CAPITAL LETTER AE</span></td><td><code>&amp;AElig;</code></td><td><input value="&amp;#198;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c7</td><td>Ç</td><td><span class="uniname">LATIN CAPITAL LETTER C WITH CEDILLA</span></td><td><code>&amp;Ccedil;</code></td><td><input value="&amp;#199;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c8</td><td>È</td><td><span class="uniname">LATIN CAPITAL LETTER E WITH GRAVE</span></td><td><code>&amp;Egrave;</code></td><td><input value="&amp;#200;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00c9</td><td>É</td><td><span class="uniname">LATIN CAPITAL LETTER E WITH ACUTE</span></td><td><code>&amp;Eacute;</code></td><td><input value="&amp;#201;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ca</td><td>Ê</td><td><span class="uniname">LATIN CAPITAL LETTER E WITH CIRCUMFLEX</span></td><td><code>&amp;Ecirc;</code></td><td><input value="&amp;#202;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00cb</td><td>Ë</td><td><span class="uniname">LATIN CAPITAL LETTER E WITH DIAERESIS</span></td><td><code>&amp;Euml;</code></td><td><input value="&amp;#203;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00cc</td><td>Ì</td><td><span class="uniname">LATIN CAPITAL LETTER I WITH GRAVE</span></td><td><code>&amp;Igrave;</code></td><td><input value="&amp;#204;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00cd</td><td>Í</td><td><span class="uniname">LATIN CAPITAL LETTER I WITH ACUTE</span></td><td><code>&amp;Iacute;</code></td><td><input value="&amp;#205;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ce</td><td>Î</td><td><span class="uniname">LATIN CAPITAL LETTER I WITH CIRCUMFLEX</span></td><td><code>&amp;Icirc;</code></td><td><input value="&amp;#206;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00cf</td><td>Ï</td><td><span class="uniname">LATIN CAPITAL LETTER I WITH DIAERESIS</span></td><td><code>&amp;Iuml;</code></td><td><input value="&amp;#207;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d0</td><td>Ð</td><td><span class="uniname">LATIN CAPITAL LETTER ETH</span></td><td><code>&amp;ETH;</code></td><td><input value="&amp;#208;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d1</td><td>Ñ</td><td><span class="uniname">LATIN CAPITAL LETTER N WITH TILDE</span></td><td><code>&amp;Ntilde;</code></td><td><input value="&amp;#209;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d2</td><td>Ò</td><td><span class="uniname">LATIN CAPITAL LETTER O WITH GRAVE</span></td><td><code>&amp;Ograve;</code></td><td><input value="&amp;#210;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d3</td><td>Ó</td><td><span class="uniname">LATIN CAPITAL LETTER O WITH ACUTE</span></td><td><code>&amp;Oacute;</code></td><td><input value="&amp;#211;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d4</td><td>Ô</td><td><span class="uniname">LATIN CAPITAL LETTER O WITH CIRCUMFLEX</span></td><td><code>&amp;Ocirc;</code></td><td><input value="&amp;#212;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d5</td><td>Õ</td><td><span class="uniname">LATIN CAPITAL LETTER O WITH TILDE</span></td><td><code>&amp;Otilde;</code></td><td><input value="&amp;#213;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d6</td><td>Ö</td><td><span class="uniname">LATIN CAPITAL LETTER O WITH DIAERESIS</span></td><td><code>&amp;Ouml;</code></td><td><input value="&amp;#214;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d7</td><td>×</td><td><span class="uniname">MULTIPLICATION SIGN</span></td><td><code>&amp;times;</code></td><td><input value="&amp;#215;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d8</td><td>Ø</td><td><span class="uniname">LATIN CAPITAL LETTER O WITH STROKE</span></td><td><code>&amp;Oslash;</code></td><td><input value="&amp;#216;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00d9</td><td>Ù</td><td><span class="uniname">LATIN CAPITAL LETTER U WITH GRAVE</span></td><td><code>&amp;Ugrave;</code></td><td><input value="&amp;#217;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00da</td><td>Ú</td><td><span class="uniname">LATIN CAPITAL LETTER U WITH ACUTE</span></td><td><code>&amp;Uacute;</code></td><td><input value="&amp;#218;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00db</td><td>Û</td><td><span class="uniname">LATIN CAPITAL LETTER U WITH CIRCUMFLEX</span></td><td><code>&amp;Ucirc;</code></td><td><input value="&amp;#219;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00dc</td><td>Ü</td><td><span class="uniname">LATIN CAPITAL LETTER U WITH DIAERESIS</span></td><td><code>&amp;Uuml;</code></td><td><input value="&amp;#220;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00dd</td><td>Ý</td><td><span class="uniname">LATIN CAPITAL LETTER Y WITH ACUTE</span></td><td><code>&amp;Yacute;</code></td><td><input value="&amp;#221;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00de</td><td>Þ</td><td><span class="uniname">LATIN CAPITAL LETTER THORN</span></td><td><code>&amp;THORN;</code></td><td><input value="&amp;#222;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00df</td><td>ß</td><td><span class="uniname">LATIN SMALL LETTER SHARP S</span></td><td><code>&amp;szlig;</code></td><td><input value="&amp;#223;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e0</td><td>à</td><td><span class="uniname">LATIN SMALL LETTER A WITH GRAVE</span></td><td><code>&amp;agrave;</code></td><td><input value="&amp;#224;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e1</td><td>á</td><td><span class="uniname">LATIN SMALL LETTER A WITH ACUTE</span></td><td><code>&amp;aacute;</code></td><td><input value="&amp;#225;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e2</td><td>â</td><td><span class="uniname">LATIN SMALL LETTER A WITH CIRCUMFLEX</span></td><td><code>&amp;acirc;</code></td><td><input value="&amp;#226;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e3</td><td>ã</td><td><span class="uniname">LATIN SMALL LETTER A WITH TILDE</span></td><td><code>&amp;atilde;</code></td><td><input value="&amp;#227;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e4</td><td>ä</td><td><span class="uniname">LATIN SMALL LETTER A WITH DIAERESIS</span></td><td><code>&amp;auml;</code></td><td><input value="&amp;#228;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e5</td><td>å</td><td><span class="uniname">LATIN SMALL LETTER A WITH RING ABOVE</span></td><td><code>&amp;aring;</code></td><td><input value="&amp;#229;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e6</td><td>æ</td><td><span class="uniname">LATIN SMALL LETTER AE</span></td><td><code>&amp;aelig;</code></td><td><input value="&amp;#230;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e7</td><td>ç</td><td><span class="uniname">LATIN SMALL LETTER C WITH CEDILLA</span></td><td><code>&amp;ccedil;</code></td><td><input value="&amp;#231;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e8</td><td>è</td><td><span class="uniname">LATIN SMALL LETTER E WITH GRAVE</span></td><td><code>&amp;egrave;</code></td><td><input value="&amp;#232;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00e9</td><td>é</td><td><span class="uniname">LATIN SMALL LETTER E WITH ACUTE</span></td><td><code>&amp;eacute;</code></td><td><input value="&amp;#233;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ea</td><td>ê</td><td><span class="uniname">LATIN SMALL LETTER E WITH CIRCUMFLEX</span></td><td><code>&amp;ecirc;</code></td><td><input value="&amp;#234;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00eb</td><td>ë</td><td><span class="uniname">LATIN SMALL LETTER E WITH DIAERESIS</span></td><td><code>&amp;euml;</code></td><td><input value="&amp;#235;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ec</td><td>ì</td><td><span class="uniname">LATIN SMALL LETTER I WITH GRAVE</span></td><td><code>&amp;igrave;</code></td><td><input value="&amp;#236;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ed</td><td>í</td><td><span class="uniname">LATIN SMALL LETTER I WITH ACUTE</span></td><td><code>&amp;iacute;</code></td><td><input value="&amp;#237;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ee</td><td>î</td><td><span class="uniname">LATIN SMALL LETTER I WITH CIRCUMFLEX</span></td><td><code>&amp;icirc;</code></td><td><input value="&amp;#238;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ef</td><td>ï</td><td><span class="uniname">LATIN SMALL LETTER I WITH DIAERESIS</span></td><td><code>&amp;iuml;</code></td><td><input value="&amp;#239;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f0</td><td>ð</td><td><span class="uniname">LATIN SMALL LETTER ETH</span></td><td><code>&amp;eth;</code></td><td><input value="&amp;#240;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f1</td><td>ñ</td><td><span class="uniname">LATIN SMALL LETTER N WITH TILDE</span></td><td><code>&amp;ntilde;</code></td><td><input value="&amp;#241;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f2</td><td>ò</td><td><span class="uniname">LATIN SMALL LETTER O WITH GRAVE</span></td><td><code>&amp;ograve;</code></td><td><input value="&amp;#242;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f3</td><td>ó</td><td><span class="uniname">LATIN SMALL LETTER O WITH ACUTE</span></td><td><code>&amp;oacute;</code></td><td><input value="&amp;#243;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f4</td><td>ô</td><td><span class="uniname">LATIN SMALL LETTER O WITH CIRCUMFLEX</span></td><td><code>&amp;ocirc;</code></td><td><input value="&amp;#244;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f5</td><td>õ</td><td><span class="uniname">LATIN SMALL LETTER O WITH TILDE</span></td><td><code>&amp;otilde;</code></td><td><input value="&amp;#245;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f6</td><td>ö</td><td><span class="uniname">LATIN SMALL LETTER O WITH DIAERESIS</span></td><td><code>&amp;ouml;</code></td><td><input value="&amp;#246;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f7</td><td>÷</td><td><span class="uniname">DIVISION SIGN</span></td><td><code>&amp;divide;</code></td><td><input value="&amp;#247;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f8</td><td>ø</td><td><span class="uniname">LATIN SMALL LETTER O WITH STROKE</span></td><td><code>&amp;oslash;</code></td><td><input value="&amp;#248;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00f9</td><td>ù</td><td><span class="uniname">LATIN SMALL LETTER U WITH GRAVE</span></td><td><code>&amp;ugrave;</code></td><td><input value="&amp;#249;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00fa</td><td>ú</td><td><span class="uniname">LATIN SMALL LETTER U WITH ACUTE</span></td><td><code>&amp;uacute;</code></td><td><input value="&amp;#250;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00fb</td><td>û</td><td><span class="uniname">LATIN SMALL LETTER U WITH CIRCUMFLEX</span></td><td><code>&amp;ucirc;</code></td><td><input value="&amp;#251;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00fc</td><td>ü</td><td><span class="uniname">LATIN SMALL LETTER U WITH DIAERESIS</span></td><td><code>&amp;uuml;</code></td><td><input value="&amp;#252;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00fd</td><td>ý</td><td><span class="uniname">LATIN SMALL LETTER Y WITH ACUTE</span></td><td><code>&amp;yacute;</code></td><td><input value="&amp;#253;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00fe</td><td>þ</td><td><span class="uniname">LATIN SMALL LETTER THORN</span></td><td><code>&amp;thorn;</code></td><td><input value="&amp;#254;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x00ff</td><td>ÿ</td><td><span class="uniname">LATIN SMALL LETTER Y WITH DIAERESIS</span></td><td><code>&amp;yuml;</code></td><td><input value="&amp;#255;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0152</td><td>Œ</td><td><span class="uniname">LATIN CAPITAL LIGATURE OE</span></td><td><code>&amp;OElig;</code></td><td><input value="&amp;#338;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0153</td><td>œ</td><td><span class="uniname">LATIN SMALL LIGATURE OE</span></td><td><code>&amp;oelig;</code></td><td><input value="&amp;#339;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0160</td><td>Š</td><td><span class="uniname">LATIN CAPITAL LETTER S WITH CARON</span></td><td><code>&amp;Scaron;</code></td><td><input value="&amp;#352;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0161</td><td>š</td><td><span class="uniname">LATIN SMALL LETTER S WITH CARON</span></td><td><code>&amp;scaron;</code></td><td><input value="&amp;#353;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0178</td><td>Ÿ</td><td><span class="uniname">LATIN CAPITAL LETTER Y WITH DIAERESIS</span></td><td><code>&amp;Yuml;</code></td><td><input value="&amp;#376;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0192</td><td>ƒ</td><td><span class="uniname">LATIN SMALL LETTER F WITH HOOK</span></td><td><code>&amp;fnof;</code></td><td><input value="&amp;#402;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x02c6</td><td>ˆ</td><td><span class="uniname">MODIFIER LETTER CIRCUMFLEX ACCENT</span></td><td><code>&amp;circ;</code></td><td><input value="&amp;#710;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x02dc</td><td>˜</td><td><span class="uniname">SMALL TILDE</span></td><td><code>&amp;tilde;</code></td><td><input value="&amp;#732;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0391</td><td>Α</td><td><span class="uniname">GREEK CAPITAL LETTER ALPHA</span></td><td><code>&amp;Alpha;</code></td><td><input value="&amp;#913;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0392</td><td>Β</td><td><span class="uniname">GREEK CAPITAL LETTER BETA</span></td><td><code>&amp;Beta;</code></td><td><input value="&amp;#914;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0393</td><td>Γ</td><td><span class="uniname">GREEK CAPITAL LETTER GAMMA</span></td><td><code>&amp;Gamma;</code></td><td><input value="&amp;#915;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0394</td><td>Δ</td><td><span class="uniname">GREEK CAPITAL LETTER DELTA</span></td><td><code>&amp;Delta;</code></td><td><input value="&amp;#916;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0395</td><td>Ε</td><td><span class="uniname">GREEK CAPITAL LETTER EPSILON</span></td><td><code>&amp;Epsilon;</code></td><td><input value="&amp;#917;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0396</td><td>Ζ</td><td><span class="uniname">GREEK CAPITAL LETTER ZETA</span></td><td><code>&amp;Zeta;</code></td><td><input value="&amp;#918;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0397</td><td>Η</td><td><span class="uniname">GREEK CAPITAL LETTER ETA</span></td><td><code>&amp;Eta;</code></td><td><input value="&amp;#919;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0398</td><td>Θ</td><td><span class="uniname">GREEK CAPITAL LETTER THETA</span></td><td><code>&amp;Theta;</code></td><td><input value="&amp;#920;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x0399</td><td>Ι</td><td><span class="uniname">GREEK CAPITAL LETTER IOTA</span></td><td><code>&amp;Iota;</code></td><td><input value="&amp;#921;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x039a</td><td>Κ</td><td><span class="uniname">GREEK CAPITAL LETTER KAPPA</span></td><td><code>&amp;Kappa;</code></td><td><input value="&amp;#922;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x039b</td><td>Λ</td><td><span class="uniname">GREEK CAPITAL LETTER LAMDA</span></td><td><code>&amp;Lambda;</code></td><td><input value="&amp;#923;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x039c</td><td>Μ</td><td><span class="uniname">GREEK CAPITAL LETTER MU</span></td><td><code>&amp;Mu;</code></td><td><input value="&amp;#924;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x039d</td><td>Ν</td><td><span class="uniname">GREEK CAPITAL LETTER NU</span></td><td><code>&amp;Nu;</code></td><td><input value="&amp;#925;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x039e</td><td>Ξ</td><td><span class="uniname">GREEK CAPITAL LETTER XI</span></td><td><code>&amp;Xi;</code></td><td><input value="&amp;#926;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x039f</td><td>Ο</td><td><span class="uniname">GREEK CAPITAL LETTER OMICRON</span></td><td><code>&amp;Omicron;</code></td><td><input value="&amp;#927;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a0</td><td>Π</td><td><span class="uniname">GREEK CAPITAL LETTER PI</span></td><td><code>&amp;Pi;</code></td><td><input value="&amp;#928;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a1</td><td>Ρ</td><td><span class="uniname">GREEK CAPITAL LETTER RHO</span></td><td><code>&amp;Rho;</code></td><td><input value="&amp;#929;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a3</td><td>Σ</td><td><span class="uniname">GREEK CAPITAL LETTER SIGMA</span></td><td><code>&amp;Sigma;</code></td><td><input value="&amp;#931;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a4</td><td>Τ</td><td><span class="uniname">GREEK CAPITAL LETTER TAU</span></td><td><code>&amp;Tau;</code></td><td><input value="&amp;#932;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a5</td><td>Υ</td><td><span class="uniname">GREEK CAPITAL LETTER UPSILON</span></td><td><code>&amp;Upsilon;</code></td><td><input value="&amp;#933;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a6</td><td>Φ</td><td><span class="uniname">GREEK CAPITAL LETTER PHI</span></td><td><code>&amp;Phi;</code></td><td><input value="&amp;#934;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a7</td><td>Χ</td><td><span class="uniname">GREEK CAPITAL LETTER CHI</span></td><td><code>&amp;Chi;</code></td><td><input value="&amp;#935;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a8</td><td>Ψ</td><td><span class="uniname">GREEK CAPITAL LETTER PSI</span></td><td><code>&amp;Psi;</code></td><td><input value="&amp;#936;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03a9</td><td>Ω</td><td><span class="uniname">GREEK CAPITAL LETTER OMEGA</span></td><td><code>&amp;Omega;</code></td><td><input value="&amp;#937;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b1</td><td>α</td><td><span class="uniname">GREEK SMALL LETTER ALPHA</span></td><td><code>&amp;alpha;</code></td><td><input value="&amp;#945;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b2</td><td>β</td><td><span class="uniname">GREEK SMALL LETTER BETA</span></td><td><code>&amp;beta;</code></td><td><input value="&amp;#946;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b3</td><td>γ</td><td><span class="uniname">GREEK SMALL LETTER GAMMA</span></td><td><code>&amp;gamma;</code></td><td><input value="&amp;#947;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b4</td><td>δ</td><td><span class="uniname">GREEK SMALL LETTER DELTA</span></td><td><code>&amp;delta;</code></td><td><input value="&amp;#948;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b5</td><td>ε</td><td><span class="uniname">GREEK SMALL LETTER EPSILON</span></td><td><code>&amp;epsilon;</code></td><td><input value="&amp;#949;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b6</td><td>ζ</td><td><span class="uniname">GREEK SMALL LETTER ZETA</span></td><td><code>&amp;zeta;</code></td><td><input value="&amp;#950;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b7</td><td>η</td><td><span class="uniname">GREEK SMALL LETTER ETA</span></td><td><code>&amp;eta;</code></td><td><input value="&amp;#951;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b8</td><td>θ</td><td><span class="uniname">GREEK SMALL LETTER THETA</span></td><td><code>&amp;theta;</code></td><td><input value="&amp;#952;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03b9</td><td>ι</td><td><span class="uniname">GREEK SMALL LETTER IOTA</span></td><td><code>&amp;iota;</code></td><td><input value="&amp;#953;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03ba</td><td>κ</td><td><span class="uniname">GREEK SMALL LETTER KAPPA</span></td><td><code>&amp;kappa;</code></td><td><input value="&amp;#954;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03bb</td><td>λ</td><td><span class="uniname">GREEK SMALL LETTER LAMDA</span></td><td><code>&amp;lambda;</code></td><td><input value="&amp;#955;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03bc</td><td>μ</td><td><span class="uniname">GREEK SMALL LETTER MU</span></td><td><code>&amp;mu;</code></td><td><input value="&amp;#956;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03bd</td><td>ν</td><td><span class="uniname">GREEK SMALL LETTER NU</span></td><td><code>&amp;nu;</code></td><td><input value="&amp;#957;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03be</td><td>ξ</td><td><span class="uniname">GREEK SMALL LETTER XI</span></td><td><code>&amp;xi;</code></td><td><input value="&amp;#958;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03bf</td><td>ο</td><td><span class="uniname">GREEK SMALL LETTER OMICRON</span></td><td><code>&amp;omicron;</code></td><td><input value="&amp;#959;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c0</td><td>π</td><td><span class="uniname">GREEK SMALL LETTER PI</span></td><td><code>&amp;pi;</code></td><td><input value="&amp;#960;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c1</td><td>ρ</td><td><span class="uniname">GREEK SMALL LETTER RHO</span></td><td><code>&amp;rho;</code></td><td><input value="&amp;#961;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c2</td><td>ς</td><td><span class="uniname">GREEK SMALL LETTER FINAL SIGMA</span></td><td><code>&amp;sigmaf;</code></td><td><input value="&amp;#962;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c3</td><td>σ</td><td><span class="uniname">GREEK SMALL LETTER SIGMA</span></td><td><code>&amp;sigma;</code></td><td><input value="&amp;#963;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c4</td><td>τ</td><td><span class="uniname">GREEK SMALL LETTER TAU</span></td><td><code>&amp;tau;</code></td><td><input value="&amp;#964;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c5</td><td>υ</td><td><span class="uniname">GREEK SMALL LETTER UPSILON</span></td><td><code>&amp;upsilon;</code></td><td><input value="&amp;#965;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c6</td><td>φ</td><td><span class="uniname">GREEK SMALL LETTER PHI</span></td><td><code>&amp;phi;</code></td><td><input value="&amp;#966;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c7</td><td>χ</td><td><span class="uniname">GREEK SMALL LETTER CHI</span></td><td><code>&amp;chi;</code></td><td><input value="&amp;#967;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c8</td><td>ψ</td><td><span class="uniname">GREEK SMALL LETTER PSI</span></td><td><code>&amp;psi;</code></td><td><input value="&amp;#968;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03c9</td><td>ω</td><td><span class="uniname">GREEK SMALL LETTER OMEGA</span></td><td><code>&amp;omega;</code></td><td><input value="&amp;#969;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03d1</td><td>ϑ</td><td><span class="uniname">GREEK THETA SYMBOL</span></td><td><code>&amp;thetasym;</code></td><td><input value="&amp;#977;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03d2</td><td>ϒ</td><td><span class="uniname">GREEK UPSILON WITH HOOK SYMBOL</span></td><td><code>&amp;upsih;</code></td><td><input value="&amp;#978;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x03d6</td><td>ϖ</td><td><span class="uniname">GREEK PI SYMBOL</span></td><td><code>&amp;piv;</code></td><td><input value="&amp;#982;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2002</td><td><span class="ctlcode">ensp</span></td><td><span class="uniname">EN SPACE</span></td><td><code>&amp;ensp;</code></td><td><input value="&amp;#8194;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2003</td><td><span class="ctlcode">emsp</span></td><td><span class="uniname">EM SPACE</span></td><td><code>&amp;emsp;</code></td><td><input value="&amp;#8195;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2009</td><td><span class="ctlcode">thsp</span></td><td><span class="uniname">THIN SPACE</span></td><td><code>&amp;thinsp;</code></td><td><input value="&amp;#8201;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x200c</td><td><span class="ctlcode">zwnj</span></td><td><span class="uniname">ZERO WIDTH NON-JOINER</span></td><td><code>&amp;zwnj;</code></td><td><input value="&amp;#8204;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x200d</td><td><span class="ctlcode">zwj</span></td><td><span class="uniname">ZERO WIDTH JOINER</span></td><td><code>&amp;zwj;</code></td><td><input value="&amp;#8205;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x200e</td><td><span class="ctlcode">lrm</span></td><td><span class="uniname">LEFT-TO-RIGHT MARK</span></td><td><code>&amp;lrm;</code></td><td><input value="&amp;#8206;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x200f</td><td><span class="ctlcode">rlm</span></td><td><span class="uniname">RIGHT-TO-LEFT MARK</span></td><td><code>&amp;rlm;</code></td><td><input value="&amp;#8207;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2013</td><td>–</td><td><span class="uniname">EN DASH</span></td><td><code>&amp;ndash;</code></td><td><input value="&amp;#8211;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2014</td><td>—</td><td><span class="uniname">EM DASH</span></td><td><code>&amp;mdash;</code></td><td><input value="&amp;#8212;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2018</td><td>‘</td><td><span class="uniname">LEFT SINGLE QUOTATION MARK</span></td><td><code>&amp;lsquo;</code></td><td><input value="&amp;#8216;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2019</td><td>’</td><td><span class="uniname">RIGHT SINGLE QUOTATION MARK</span></td><td><code>&amp;rsquo;</code></td><td><input value="&amp;#8217;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x201a</td><td>‚</td><td><span class="uniname">SINGLE LOW-9 QUOTATION MARK</span></td><td><code>&amp;sbquo;</code></td><td><input value="&amp;#8218;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x201c</td><td>“</td><td><span class="uniname">LEFT DOUBLE QUOTATION MARK</span></td><td><code>&amp;ldquo;</code></td><td><input value="&amp;#8220;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x201d</td><td>”</td><td><span class="uniname">RIGHT DOUBLE QUOTATION MARK</span></td><td><code>&amp;rdquo;</code></td><td><input value="&amp;#8221;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x201e</td><td>„</td><td><span class="uniname">DOUBLE LOW-9 QUOTATION MARK</span></td><td><code>&amp;bdquo;</code></td><td><input value="&amp;#8222;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2020</td><td>†</td><td><span class="uniname">DAGGER</span></td><td><code>&amp;dagger;</code></td><td><input value="&amp;#8224;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2021</td><td>‡</td><td><span class="uniname">DOUBLE DAGGER</span></td><td><code>&amp;Dagger;</code></td><td><input value="&amp;#8225;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2022</td><td>•</td><td><span class="uniname">BULLET</span></td><td><code>&amp;bull;</code></td><td><input value="&amp;#8226;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2026</td><td>…</td><td><span class="uniname">HORIZONTAL ELLIPSIS</span></td><td><code>&amp;hellip;</code></td><td><input value="&amp;#8230;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2030</td><td>‰</td><td><span class="uniname">PER MILLE SIGN</span></td><td><code>&amp;permil;</code></td><td><input value="&amp;#8240;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2032</td><td>′</td><td><span class="uniname">PRIME</span></td><td><code>&amp;prime;</code></td><td><input value="&amp;#8242;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2033</td><td>″</td><td><span class="uniname">DOUBLE PRIME</span></td><td><code>&amp;Prime;</code></td><td><input value="&amp;#8243;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2039</td><td>‹</td><td><span class="uniname">SINGLE LEFT-POINTING ANGLE QUOTATION MARK</span></td><td><code>&amp;lsaquo;</code></td><td><input value="&amp;#8249;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x203a</td><td>›</td><td><span class="uniname">SINGLE RIGHT-POINTING ANGLE QUOTATION MARK</span></td><td><code>&amp;rsaquo;</code></td><td><input value="&amp;#8250;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x203e</td><td>‾</td><td><span class="uniname">OVERLINE</span></td><td><code>&amp;oline;</code></td><td><input value="&amp;#8254;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2044</td><td>⁄</td><td><span class="uniname">FRACTION SLASH</span></td><td><code>&amp;frasl;</code></td><td><input value="&amp;#8260;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x20ac</td><td>€</td><td><span class="uniname">EURO SIGN</span></td><td><code>&amp;euro;</code></td><td><input value="&amp;#8364;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2111</td><td>ℑ</td><td><span class="uniname">BLACK-LETTER CAPITAL I</span></td><td><code>&amp;image;</code></td><td><input value="&amp;#8465;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2118</td><td>℘</td><td><span class="uniname">SCRIPT CAPITAL P</span></td><td><code>&amp;weierp;</code></td><td><input value="&amp;#8472;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x211c</td><td>ℜ</td><td><span class="uniname">BLACK-LETTER CAPITAL R</span></td><td><code>&amp;real;</code></td><td><input value="&amp;#8476;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2122</td><td>™</td><td><span class="uniname">TRADE MARK SIGN</span></td><td><code>&amp;trade;</code></td><td><input value="&amp;#8482;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2135</td><td>ℵ</td><td><span class="uniname">ALEF SYMBOL</span></td><td><code>&amp;alefsym;</code></td><td><input value="&amp;#8501;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2190</td><td>←</td><td><span class="uniname">LEFTWARDS ARROW</span></td><td><code>&amp;larr;</code></td><td><input value="&amp;#8592;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2191</td><td>↑</td><td><span class="uniname">UPWARDS ARROW</span></td><td><code>&amp;uarr;</code></td><td><input value="&amp;#8593;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2192</td><td>→</td><td><span class="uniname">RIGHTWARDS ARROW</span></td><td><code>&amp;rarr;</code></td><td><input value="&amp;#8594;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2193</td><td>↓</td><td><span class="uniname">DOWNWARDS ARROW</span></td><td><code>&amp;darr;</code></td><td><input value="&amp;#8595;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2194</td><td>↔</td><td><span class="uniname">LEFT RIGHT ARROW</span></td><td><code>&amp;harr;</code></td><td><input value="&amp;#8596;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x21b5</td><td>↵</td><td><span class="uniname">DOWNWARDS ARROW WITH CORNER LEFTWARDS</span></td><td><code>&amp;crarr;</code></td><td><input value="&amp;#8629;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x21d0</td><td>⇐</td><td><span class="uniname">LEFTWARDS DOUBLE ARROW</span></td><td><code>&amp;lArr;</code></td><td><input value="&amp;#8656;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x21d1</td><td>⇑</td><td><span class="uniname">UPWARDS DOUBLE ARROW</span></td><td><code>&amp;uArr;</code></td><td><input value="&amp;#8657;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x21d2</td><td>⇒</td><td><span class="uniname">RIGHTWARDS DOUBLE ARROW</span></td><td><code>&amp;rArr;</code></td><td><input value="&amp;#8658;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x21d3</td><td>⇓</td><td><span class="uniname">DOWNWARDS DOUBLE ARROW</span></td><td><code>&amp;dArr;</code></td><td><input value="&amp;#8659;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x21d4</td><td>⇔</td><td><span class="uniname">LEFT RIGHT DOUBLE ARROW</span></td><td><code>&amp;hArr;</code></td><td><input value="&amp;#8660;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2200</td><td>∀</td><td><span class="uniname">FOR ALL</span></td><td><code>&amp;forall;</code></td><td><input value="&amp;#8704;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2202</td><td>∂</td><td><span class="uniname">PARTIAL DIFFERENTIAL</span></td><td><code>&amp;part;</code></td><td><input value="&amp;#8706;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2203</td><td>∃</td><td><span class="uniname">THERE EXISTS</span></td><td><code>&amp;exist;</code></td><td><input value="&amp;#8707;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2205</td><td>∅</td><td><span class="uniname">EMPTY SET</span></td><td><code>&amp;empty;</code></td><td><input value="&amp;#8709;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2207</td><td>∇</td><td><span class="uniname">NABLA</span></td><td><code>&amp;nabla;</code></td><td><input value="&amp;#8711;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2208</td><td>∈</td><td><span class="uniname">ELEMENT OF</span></td><td><code>&amp;isin;</code></td><td><input value="&amp;#8712;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2209</td><td>∉</td><td><span class="uniname">NOT AN ELEMENT OF</span></td><td><code>&amp;notin;</code></td><td><input value="&amp;#8713;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x220b</td><td>∋</td><td><span class="uniname">CONTAINS AS MEMBER</span></td><td><code>&amp;ni;</code></td><td><input value="&amp;#8715;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x220f</td><td>∏</td><td><span class="uniname">N-ARY PRODUCT</span></td><td><code>&amp;prod;</code></td><td><input value="&amp;#8719;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2211</td><td>∑</td><td><span class="uniname">N-ARY SUMMATION</span></td><td><code>&amp;sum;</code></td><td><input value="&amp;#8721;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2212</td><td>−</td><td><span class="uniname">MINUS SIGN</span></td><td><code>&amp;minus;</code></td><td><input value="&amp;#8722;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2217</td><td>∗</td><td><span class="uniname">ASTERISK OPERATOR</span></td><td><code>&amp;lowast;</code></td><td><input value="&amp;#8727;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x221a</td><td>√</td><td><span class="uniname">SQUARE ROOT</span></td><td><code>&amp;radic;</code></td><td><input value="&amp;#8730;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x221d</td><td>∝</td><td><span class="uniname">PROPORTIONAL TO</span></td><td><code>&amp;prop;</code></td><td><input value="&amp;#8733;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x221e</td><td>∞</td><td><span class="uniname">INFINITY</span></td><td><code>&amp;infin;</code></td><td><input value="&amp;#8734;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2220</td><td>∠</td><td><span class="uniname">ANGLE</span></td><td><code>&amp;ang;</code></td><td><input value="&amp;#8736;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2227</td><td>∧</td><td><span class="uniname">LOGICAL AND</span></td><td><code>&amp;and;</code></td><td><input value="&amp;#8743;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2228</td><td>∨</td><td><span class="uniname">LOGICAL OR</span></td><td><code>&amp;or;</code></td><td><input value="&amp;#8744;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2229</td><td>∩</td><td><span class="uniname">INTERSECTION</span></td><td><code>&amp;cap;</code></td><td><input value="&amp;#8745;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x222a</td><td>∪</td><td><span class="uniname">UNION</span></td><td><code>&amp;cup;</code></td><td><input value="&amp;#8746;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x222b</td><td>∫</td><td><span class="uniname">INTEGRAL</span></td><td><code>&amp;int;</code></td><td><input value="&amp;#8747;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2234</td><td>∴</td><td><span class="uniname">THEREFORE</span></td><td><code>&amp;there4;</code></td><td><input value="&amp;#8756;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x223c</td><td>∼</td><td><span class="uniname">TILDE OPERATOR</span></td><td><code>&amp;sim;</code></td><td><input value="&amp;#8764;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2245</td><td>≅</td><td><span class="uniname">APPROXIMATELY EQUAL TO</span></td><td><code>&amp;cong;</code></td><td><input value="&amp;#8773;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2248</td><td>≈</td><td><span class="uniname">ALMOST EQUAL TO</span></td><td><code>&amp;asymp;</code></td><td><input value="&amp;#8776;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2260</td><td>≠</td><td><span class="uniname">NOT EQUAL TO</span></td><td><code>&amp;ne;</code></td><td><input value="&amp;#8800;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2261</td><td>≡</td><td><span class="uniname">IDENTICAL TO</span></td><td><code>&amp;equiv;</code></td><td><input value="&amp;#8801;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2264</td><td>≤</td><td><span class="uniname">LESS-THAN OR EQUAL TO</span></td><td><code>&amp;le;</code></td><td><input value="&amp;#8804;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2265</td><td>≥</td><td><span class="uniname">GREATER-THAN OR EQUAL TO</span></td><td><code>&amp;ge;</code></td><td><input value="&amp;#8805;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2282</td><td>⊂</td><td><span class="uniname">SUBSET OF</span></td><td><code>&amp;sub;</code></td><td><input value="&amp;#8834;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2283</td><td>⊃</td><td><span class="uniname">SUPERSET OF</span></td><td><code>&amp;sup;</code></td><td><input value="&amp;#8835;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2284</td><td>⊄</td><td><span class="uniname">NOT A SUBSET OF</span></td><td><code>&amp;nsub;</code></td><td><input value="&amp;#8836;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2286</td><td>⊆</td><td><span class="uniname">SUBSET OF OR EQUAL TO</span></td><td><code>&amp;sube;</code></td><td><input value="&amp;#8838;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2287</td><td>⊇</td><td><span class="uniname">SUPERSET OF OR EQUAL TO</span></td><td><code>&amp;supe;</code></td><td><input value="&amp;#8839;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2295</td><td>⊕</td><td><span class="uniname">CIRCLED PLUS</span></td><td><code>&amp;oplus;</code></td><td><input value="&amp;#8853;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2297</td><td>⊗</td><td><span class="uniname">CIRCLED TIMES</span></td><td><code>&amp;otimes;</code></td><td><input value="&amp;#8855;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x22a5</td><td>⊥</td><td><span class="uniname">UP TACK</span></td><td><code>&amp;perp;</code></td><td><input value="&amp;#8869;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x22c5</td><td>⋅</td><td><span class="uniname">DOT OPERATOR</span></td><td><code>&amp;sdot;</code></td><td><input value="&amp;#8901;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2308</td><td>⌈</td><td><span class="uniname">LEFT CEILING</span></td><td><code>&amp;lceil;</code></td><td><input value="&amp;#8968;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2309</td><td>⌉</td><td><span class="uniname">RIGHT CEILING</span></td><td><code>&amp;rceil;</code></td><td><input value="&amp;#8969;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x230a</td><td>⌊</td><td><span class="uniname">LEFT FLOOR</span></td><td><code>&amp;lfloor;</code></td><td><input value="&amp;#8970;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x230b</td><td>⌋</td><td><span class="uniname">RIGHT FLOOR</span></td><td><code>&amp;rfloor;</code></td><td><input value="&amp;#8971;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2329</td><td>⟨</td><td><span class="uniname">LEFT-POINTING ANGLE BRACKET</span></td><td><code>&amp;lang;</code></td><td><input value="&amp;#9001;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x232a</td><td>⟩</td><td><span class="uniname">RIGHT-POINTING ANGLE BRACKET</span></td><td><code>&amp;rang;</code></td><td><input value="&amp;#9002;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x25ca</td><td>◊</td><td><span class="uniname">LOZENGE</span></td><td><code>&amp;loz;</code></td><td><input value="&amp;#9674;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2660</td><td>♠</td><td><span class="uniname">BLACK SPADE SUIT</span></td><td><code>&amp;spades;</code></td><td><input value="&amp;#9824;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2663</td><td>♣</td><td><span class="uniname">BLACK CLUB SUIT</span></td><td><code>&amp;clubs;</code></td><td><input value="&amp;#9827;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2665</td><td>♥</td><td><span class="uniname">BLACK HEART SUIT</span></td><td><code>&amp;hearts;</code></td><td><input value="&amp;#9829;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+<tr><td>0x2666</td><td>♦</td><td><span class="uniname">BLACK DIAMOND SUIT</span></td><td><code>&amp;diams;</code></td><td><input value="&amp;#9830;" /></td><td><button onclick="copy(this)">copy</button></td></tr>
+</tbody></table>
+
+</div>	
+</body>
+</html>
